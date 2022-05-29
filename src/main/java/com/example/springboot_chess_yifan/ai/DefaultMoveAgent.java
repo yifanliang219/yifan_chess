@@ -24,7 +24,7 @@ public class DefaultMoveAgent implements MovePolicy {
 	private EvaluationPolicy evaluationPolicy;
 
 	public DefaultMoveAgent() {
-		this(3);
+		this(2);
 	}
 
 	public DefaultMoveAgent(int searchDepth) {
