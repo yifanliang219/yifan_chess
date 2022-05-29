@@ -13,7 +13,8 @@ function buildBoard() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			gameState = JSON.parse(this.responseText);
+			json = JSON.parse(this.responseText);
+			gameState = new GameState(json);
 			var board = gameState.board;
 			possibleMoves = gameState.possibleMovesByActivePlayer;
 			computePossibleStartSquares();
@@ -211,3 +212,8 @@ function highlightSelectedPieceAndItsMoves() {
 	}
 }
 
+class GameState {
+	constructor(json) {
+		Object.assign(this, json)
+	}
+}

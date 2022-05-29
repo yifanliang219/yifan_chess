@@ -1,10 +1,5 @@
 package com.example.springboot_chess_yifan.board;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class PIECE_KING extends Piece {
 	
 	private boolean hasMoved = false;
@@ -13,6 +8,20 @@ public class PIECE_KING extends Piece {
 		super(PieceType.KING, owner);
 	}
 	
+	
+	
+	public boolean isHasMoved() {
+		return hasMoved;
+	}
+
+
+
+	public void setHasMoved(boolean hasMoved) {
+		this.hasMoved = hasMoved;
+	}
+
+
+
 	@Override
 	public Piece clone() {
 		PIECE_KING clone = new PIECE_KING(this.getOwner()); 

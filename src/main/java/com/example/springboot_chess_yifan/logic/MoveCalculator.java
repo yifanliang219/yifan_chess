@@ -2,6 +2,7 @@ package com.example.springboot_chess_yifan.logic;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.example.springboot_chess_yifan.board.PIECE_KING;
 import com.example.springboot_chess_yifan.board.PIECE_ROOK;
 import com.example.springboot_chess_yifan.board.Piece;

@@ -1,10 +1,6 @@
 package com.example.springboot_chess_yifan.board;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class Square {
 
 	private final int file;
@@ -50,6 +46,31 @@ public class Square {
 	}
 	
 	
+	
+	public Piece getPiece() {
+		return piece;
+	}
+
+	public void setPiece(Piece piece) {
+		this.piece = piece;
+	}
+
+	public int getFile() {
+		return file;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
 	public boolean equals(Square sq) {
 		return (this.file == sq.file && this.rank == sq.rank);
 	}

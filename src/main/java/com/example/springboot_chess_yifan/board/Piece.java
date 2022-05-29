@@ -1,10 +1,6 @@
 package com.example.springboot_chess_yifan.board;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public abstract class Piece {
 
 	private final PieceType pieceType;
@@ -36,6 +32,16 @@ public abstract class Piece {
 		}
 	}
 	
+	
+	
+	public PieceType getPieceType() {
+		return pieceType;
+	}
+
+	public Player getOwner() {
+		return owner;
+	}
+
 	public boolean isNullPiece() {
 		return false;
 	}

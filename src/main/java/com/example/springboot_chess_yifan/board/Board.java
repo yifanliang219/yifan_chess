@@ -5,17 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
 public class Board {
 
 	// Square[rank][file]
 	private Square[][] squares = new Square[8][8];
+	
+	
+
+	public Board(Square[][] squares) {
+		this.squares = squares;
+	}
 
 	public static Board generateDefaultBoard() {
 
@@ -128,6 +127,16 @@ public class Board {
 			}
 			System.out.println();
 		}
+	}
+	
+	
+
+	public Square[][] getSquares() {
+		return squares;
+	}
+
+	public void setSquares(Square[][] squares) {
+		this.squares = squares;
 	}
 
 	@Override

@@ -1,20 +1,8 @@
 package com.example.springboot_chess_yifan.logic;
 
-import com.example.springboot_chess_yifan.board.NullPiece;
-import com.example.springboot_chess_yifan.board.PIECE_BISHOP;
-import com.example.springboot_chess_yifan.board.PIECE_KING;
-import com.example.springboot_chess_yifan.board.PIECE_KNIGHT;
-import com.example.springboot_chess_yifan.board.PIECE_PAWN;
-import com.example.springboot_chess_yifan.board.PIECE_QUEEN;
-import com.example.springboot_chess_yifan.board.PIECE_ROOK;
 import com.example.springboot_chess_yifan.board.Square;
 import com.example.springboot_chess_yifan.game.GameState;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public abstract class Move {
 
 	private final int start_file;
@@ -44,6 +32,28 @@ public abstract class Move {
 		default:
 			return null;
 		}
+	}
+
+	
+	
+	public int getStart_file() {
+		return start_file;
+	}
+
+	public int getStart_rank() {
+		return start_rank;
+	}
+
+	public int getEnd_file() {
+		return end_file;
+	}
+
+	public int getEnd_rank() {
+		return end_rank;
+	}
+
+	public MoveType getMoveType() {
+		return moveType;
 	}
 
 	public Square getStartSquare(GameState state) {

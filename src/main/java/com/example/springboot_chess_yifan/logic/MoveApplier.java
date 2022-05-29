@@ -36,7 +36,9 @@ public class MoveApplier {
 			return gameState;
 		}
 	}
-
+	/*
+	 * applyMove_standard moves a piece that is a knight, bishop or queen.
+	 */
 	private static GameState applyMove_standard(GameState gameState, Move move) {
 
 		GameState afterMove = gameState.clone();
@@ -44,7 +46,6 @@ public class MoveApplier {
 		move.getStartSquare(afterMove).setPiece(new NullPiece());
 		move.getEndSquare(afterMove).setPiece(p);
 		afterMove.setLastMove(move);
-		afterMove.setPreviousState(gameState);
 		afterMove.togglePlayer();				
 		return afterMove;
 
@@ -58,7 +59,6 @@ public class MoveApplier {
 		move.getStartSquare(afterMove).setPiece(new NullPiece());
 		move.getEndSquare(afterMove).setPiece(rook);
 		afterMove.setLastMove(move);
-		afterMove.setPreviousState(gameState);
 		afterMove.togglePlayer();				
 		return afterMove;
 
@@ -72,7 +72,7 @@ public class MoveApplier {
 		move.getStartSquare(afterMove).setPiece(new NullPiece());
 		move.getEndSquare(afterMove).setPiece(king);
 		afterMove.setLastMove(move);
-		afterMove.setPreviousState(gameState);
+		// check if the move is a castling
 		if (move.getStart_file() + 2 == move.getEnd_file()) {
 			int rank = move.getStart_rank();
 			PIECE_ROOK rook = (PIECE_ROOK) afterMove.getBoard().getSquareByFileAndRank(8, rank).getPiece();
@@ -98,7 +98,6 @@ public class MoveApplier {
 		move.getStartSquare(afterMove).setPiece(new NullPiece());
 		move.getEndSquare(afterMove).setPiece(p);
 		afterMove.setLastMove(move);
-		afterMove.setPreviousState(gameState);
 		// if the pawn move is a capture move and the captured square was empty, that
 		// means it's en passant
 		if (move.getStart_file() != move.getEnd_file() && move.getEndSquare(gameState).getPiece().isNullPiece()) {
@@ -112,7 +111,7 @@ public class MoveApplier {
 				captured_piece_sq.setPiece(new NullPiece());
 			}
 		}
-		// if the pawn has reached the last rank
+		// if the pawn has reached the last rank, ask for promotion
 		if ((p.getOwner() == Player.WHITE && move.getEnd_rank() == 8)
 				|| (p.getOwner() == Player.BLACK && move.getEnd_rank() == 1)) {
 			

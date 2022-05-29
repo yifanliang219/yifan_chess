@@ -1,16 +1,9 @@
 package com.example.springboot_chess_yifan;
 
-import java.util.concurrent.Future;
-
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.example.springboot_chess_yifan.board.Board;
-import com.example.springboot_chess_yifan.game.GameState;
-import com.example.springboot_chess_yifan.logic.Move;
-import com.example.springboot_chess_yifan.logic.MoveApplier;
 
 @SpringBootApplication
 public class SpringbootChessYifanApplication implements ApplicationRunner {
