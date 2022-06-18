@@ -1,6 +1,7 @@
 package com.example.springboot_chess_yifan.controller;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import com.example.springboot_chess_yifan.logic.PromotionHandler;
 @RestController
 public class ChessController {
 
-	private Map<String, GameState> games = new HashMap<>();
+	private Map<String, GameState> games = new LinkedHashMap<>();
 		
 	@Autowired
 	@Qualifier("defaultMoveAgent")
@@ -34,6 +35,9 @@ public class ChessController {
 	@GetMapping("init")
 	public GameState init() {
 		GameState gameState = new GameState();
+		if(games.keySet().size() >= 100) {
+			games.remove(games.keySet().iterator().next());
+		}
 		games.put(gameState.getGameId(), gameState);
 		return gameState;
 	}
