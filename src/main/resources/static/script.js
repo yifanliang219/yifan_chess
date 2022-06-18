@@ -1,4 +1,5 @@
 var gameState;
+var gameId;
 var possibleMoves;
 var possibleStartSquares = new Set();
 var selectedId;
@@ -15,6 +16,7 @@ function buildBoard() {
 		if (this.readyState == 4 && this.status == 200) {
 			json = JSON.parse(this.responseText);
 			gameState = new GameState(json);
+			gameId = gameState.gameId;
 			var board = gameState.board;
 			possibleMoves = gameState.possibleMovesByActivePlayer;
 			computePossibleStartSquares();
@@ -54,7 +56,7 @@ function buildBoard() {
 
 		}
 	};
-	xmlhttp.open("GET", "board.json", true);
+	xmlhttp.open("GET", "init", true);
 	xmlhttp.send();
 }
 
@@ -134,7 +136,7 @@ function getAiMove() {
 			processingClick = false;
 		}
 	};
-	xmlhttp.open("GET", "board.json/ai", true);
+	xmlhttp.open("GET", "games/" + gameId + "/ai", true);
 	xmlhttp.send();
 }
 
@@ -154,7 +156,7 @@ function promotePiece(piece) {
 	if (status != "WAIT_PROMOTION") {
 		return;
 	}
-	var url = "board.json/promotion?piece=" + piece;
+	var url = "games/" + gameId + "/promotion?piece=" + piece;
 	updateBoard(url);
 }
 
@@ -177,7 +179,7 @@ function processClick(id) {
 	else {
 		if (possibleDesOfSelectedId.has(id)) {
 			moveType = searchMoveType(selectedId, id);
-			var url = "board.json?start_file=" + selectedId.replace(",", "&start_rank=") + "&end_file=" + id.replace(",", "&end_rank=") + "&moveType=" + moveType;
+			var url = "games/" + gameId + "/move?start_file=" + selectedId.replace(",", "&start_rank=") + "&end_file=" + id.replace(",", "&end_rank=") + "&moveType=" + moveType;
 			updateBoard(url);
 			selectedId = null;
 			possibleDesOfSelectedId = new Set();

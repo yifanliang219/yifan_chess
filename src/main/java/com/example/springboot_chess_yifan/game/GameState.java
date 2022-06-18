@@ -1,6 +1,7 @@
 package com.example.springboot_chess_yifan.game;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import com.example.springboot_chess_yifan.logic.MoveCalculator;
 @Component
 public class GameState {
 	
+	private String gameId = UUID.randomUUID().toString();
 	private Board board = Board.generateDefaultBoard();	
 	private Player active_player = Player.WHITE;
 	private Move lastMove = null;
@@ -44,12 +46,19 @@ public class GameState {
 		Player clonedActivePlayer = active_player;
 		Move clonedLastMove = lastMove;
 		GameState clone = new GameState(clonedBoard, clonedActivePlayer, clonedLastMove);
+		clone.setGameId(gameId);
 		clone.setMessage(message);
 		return clone;
 	}
 	
-	
-	
+	public String getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(String gameId) {
+		this.gameId = gameId;
+	}
+
 	public Board getBoard() {
 		return board;
 	}
